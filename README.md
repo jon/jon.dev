@@ -19,8 +19,11 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Checks
 
 ```bash
-pnpm build
-node --test tests/rendered-html.test.mjs
+pnpm test
+pnpm lint
 ```
 
-The production build targets the Cloudflare-compatible Sites runtime.
+## Publishing
+
+Push `main` to deploy the static export through GitHub Pages. The custom domain
+is `jon.dev`.

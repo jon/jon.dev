@@ -5,7 +5,9 @@ import { SiteHeader } from "./_components/site-header";
 import { projects, site, writing } from "../content/site";
 
 export const metadata: Metadata = {
-  title: "Index",
+  title: {
+    absolute: "Index — jon.dev",
+  },
   description: site.description,
 };
 
