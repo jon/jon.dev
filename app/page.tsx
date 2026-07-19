@@ -37,7 +37,7 @@ export default function Home() {
           <p className="hero-status meta">
             Git-managed
             <br />
-            California / 2026
+            Seattle / 2026
           </p>
         </div>
       </section>

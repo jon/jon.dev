@@ -3,7 +3,7 @@
 :root {
   --ink: #0b0b0d;
   --paper: #ffffff;
-  --blue: #1748ff;
+  --accent: #b42318;
   --muted: #6b6b70;
   --hairline: #d8d8dc;
   --page-x: clamp(18px, 3vw, 48px);
@@ -34,7 +34,7 @@ body {
 }
 
 ::selection {
-  background: var(--blue);
+  background: var(--accent);
   color: var(--paper);
 }
 
@@ -44,7 +44,7 @@ a {
 }
 
 a:focus-visible {
-  outline: 3px solid var(--blue);
+  outline: 3px solid var(--accent);
   outline-offset: 5px;
 }
 
@@ -73,7 +73,7 @@ a:focus-visible {
 }
 
 .accent {
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .site-header {
@@ -88,6 +88,7 @@ a:focus-visible {
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.055em;
+  text-transform: uppercase;
 }
 
 .header-index {
@@ -114,7 +115,7 @@ a:focus-visible {
   bottom: 4px;
   left: 0;
   height: 2px;
-  background: var(--blue);
+  background: var(--accent);
   content: "";
   transform: scaleX(0);
   transform-origin: right;
@@ -130,7 +131,7 @@ a:focus-visible {
 .hero {
   position: relative;
   min-height: 520px;
-  padding-block: clamp(38px, 5vw, 78px) 55px;
+  padding-block: clamp(52px, 4.5vw, 76px) 55px;
   border-bottom: 1px solid var(--ink);
 }
 
@@ -148,8 +149,9 @@ a:focus-visible {
   margin: 0;
   font-size: clamp(96px, 15.2vw, 244px);
   font-weight: 500;
-  line-height: 0.78;
+  line-height: 0.84;
   letter-spacing: -0.086em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -182,7 +184,7 @@ a:focus-visible {
 
 .section-number {
   grid-column: 1 / span 1;
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .section-title {
@@ -232,13 +234,13 @@ a:focus-visible {
   justify-content: space-between;
   gap: 14px;
   padding-bottom: 8px;
-  border-bottom: 2px solid var(--blue);
+  border-bottom: 2px solid var(--accent);
   color: var(--ink);
 }
 
 .item-link span:last-child,
 .text-link span:last-child {
-  color: var(--blue);
+  color: var(--accent);
   font-size: 16px;
   line-height: 0.7;
   transition: transform 180ms ease;
@@ -288,7 +290,7 @@ a:focus-visible {
 .top-link {
   grid-column: 12 / 13;
   justify-self: end;
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .page-intro {
@@ -331,7 +333,7 @@ a:focus-visible {
 
 .listing-number {
   grid-column: 1 / span 1;
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .listing-label {
@@ -450,7 +452,7 @@ a:focus-visible {
 }
 
 .next-link span:last-child {
-  color: var(--blue);
+  color: var(--accent);
   transition: transform 180ms ease;
 }
 
