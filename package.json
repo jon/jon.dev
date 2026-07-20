@@ -2,9 +2,9 @@
   "name": "jon-dev",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@11.15.1",
   "engines": {
-    "node": ">=22.13.0"
+    "node": ">=24.0.0 <25"
   },
   "scripts": {
     "dev": "next dev",
@@ -15,21 +15,21 @@
     "visual:diff": "node scripts/visual-diff.mjs"
   },
   "dependencies": {
-    "next": "16.2.6",
-    "react": "19.2.6",
-    "react-dom": "19.2.6"
+    "next": "16.2.10",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "4.2.1",
-    "@types/node": "22.19.19",
-    "@types/react": "19.2.14",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.4",
-    "eslint-config-next": "16.2.6",
+    "eslint-config-next": "16.2.10",
     "pixelmatch": "7.2.0",
     "playwright-core": "1.61.1",
     "pngjs": "7.0.0",
-    "tailwindcss": "4.2.1",
+    "tailwindcss": "4.3.3",
     "typescript": "5.9.3"
   },
   "type": "module"
