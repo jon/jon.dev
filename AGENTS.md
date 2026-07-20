@@ -3,6 +3,38 @@
 This repository publishes `jon.dev` as a static Next.js site on GitHub Pages.
 Keep the site minimalist, grid-led, fast, and usable without JavaScript.
 
+## Voice and content provenance
+
+`VOICE.md` is Jon's private, local writing guide. It is deliberately ignored by
+Git and must never be committed, published, copied into an output artifact, or
+quoted in a public issue, pull request, build log, or release report.
+
+Before drafting or materially editing prose for the site:
+
+1. Read `VOICE.md` when it is present. If it is missing, do not reconstruct it
+   from memory or invent voice rules.
+2. Use it as an editing model, not a bag of mannerisms. Preserve evidence
+   boundaries, rhythm, directness, and restraint; do not cargo-cult profanity,
+   jokes, fragments, or conversational false starts.
+3. Keep the public document's needs ahead of mimicry. Accessibility, accuracy,
+   and a clear reading order still win.
+
+After an interactive content review, update the private trajectory ledger in
+`VOICE.md` when Jon's feedback teaches a reusable lesson. Record:
+
+- the piece and its intended audience;
+- where the draft or conversation started, summarized rather than pasted;
+- Jon's decisive interventions, including what he rejected or removed;
+- where the published or approved version ended;
+- the general voice lesson, its confidence, and any counterexample or
+  piece-specific caveat.
+
+The trajectory matters more than collecting polished quotations: the purpose is
+to learn how Jon edits toward his voice. Do not turn a single preference into a
+global rule. Before every commit, verify that `VOICE.md` is ignored and
+untracked with `git check-ignore -v VOICE.md` and `git ls-files --error-unmatch
+VOICE.md` (the latter must fail).
+
 ## Release rule
 
 Do not push a site update until the release procedure below passes. A change is
@@ -99,20 +131,27 @@ correct.
    - color, borders, contrast, and focus visibility
    - content accidentally added, removed, duplicated, or obscured
    Never approve screenshots from DOM or CSS inspection alone.
-8. Treat mobile as a first-class layout, not a shrunk desktop page. At 390 px,
+8. When the release is being prepared in an interactive Codex task, show Jon
+   the candidate desktop and mobile screenshots in the task and wait for his
+   explicit approval before committing or pushing. Include the 320 px candidate
+   when the change materially affects width, type, or grid behavior. Approval
+   applies only to the exact rendered candidate shown: any subsequent visible
+   change invalidates it and requires fresh screenshots and approval. Never
+   infer approval from silence or from approval of an earlier design.
+9. Treat mobile as a first-class layout, not a shrunk desktop page. At 390 px,
    verify reading order, comfortable page edges, intentional title wrapping,
    touch-safe controls, and no off-canvas content. Also inspect at 320 px when a
    change affects width, typography, or the grid.
-9. Treat screen readers as first-class consumers. Verify one `<main>` landmark,
+10. Treat screen readers as first-class consumers. Verify one `<main>` landmark,
    a logical heading outline, useful link names, sensible accessible names and
    reading order, decorative content hidden from assistive technology, and no
    duplicated announcements. Keyboard-test every control, including the skip
    link and visible focus state. Confirm reduced-motion behavior and check text
    contrast. Test at 200% browser zoom when layout or type changes.
-10. If any delta is unexplained or any accessibility check fails, fix it and
+11. If any delta is unexplained or any accessibility check fails, fix it and
    repeat capture, mask generation, and review. Keep the final evidence in
    `work/release-visuals/` for the duration of the release.
-11. Commit as `Jon Olson <jon@jon.dev>`, push normally, and watch the GitHub Pages
+12. Commit as `Jon Olson <jon@jon.dev>`, push normally, and watch the GitHub Pages
     workflow to a successful conclusion. Then make a verified HTTPS request to
     `https://jon.dev`, capture the live desktop and mobile views, and compare
     them with the approved candidate. Report the deployed commit and any
