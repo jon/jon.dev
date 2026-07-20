@@ -24,6 +24,24 @@ test("exports the jon.dev index as static HTML", async () => {
   );
 });
 
+test("keeps screen-reader landmarks and labels intentional", async () => {
+  const html = await renderedHtml();
+  assert.equal(html.match(/<main(?:\s|>)/g)?.length, 1);
+  assert.match(html, /<header[\s\S]*<main[\s\S]*<footer/);
+  assert.match(html, /href="#main-content">Skip to content<\/a>/);
+  assert.match(html, /<main id="main-content" tabindex="-1">/);
+  assert.match(html, /<h1[^>]*aria-label="jon\.dev"/);
+  assert.match(html, /Section 1: Personal site/);
+  assert.match(
+    html,
+    /class="section-number eyebrow" aria-hidden="true">02<\/span>/,
+  );
+  assert.match(
+    html,
+    /class="about-mark meta" aria-hidden="true">jon\.dev<\/span>/,
+  );
+});
+
 test("does not publish empty writing or project sections", async () => {
   await assert.rejects(access(new URL("../out/writing", import.meta.url)));
   await assert.rejects(access(new URL("../out/projects", import.meta.url)));
