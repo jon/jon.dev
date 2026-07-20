@@ -88,7 +88,6 @@ a:focus-visible {
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.025em;
-  text-transform: uppercase;
 }
 
 .header-index {
@@ -151,7 +150,6 @@ a:focus-visible {
   font-weight: 500;
   line-height: 0.78;
   letter-spacing: -0.045em;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
