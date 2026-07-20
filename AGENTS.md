@@ -11,11 +11,38 @@ correct.
 
 ## Release procedure
 
-1. Confirm the intended scope with `git status --short` and inspect the complete
+1. Audit the project underpinnings before changing or deploying the site:
+
+   ```sh
+   node --version
+   pnpm --version
+   pnpm outdated --format json || true
+   ```
+
+   Check the official Node.js release status and the current stable releases of
+   pnpm, direct production and development dependencies, and every GitHub Action
+   used by the workflow. Be greedy about compatible upgrades:
+   - build and test on the newest Active LTS Node.js major; keep
+     `.node-version`, `package.json` engines, `@types/node`, and the workflow in
+     sync
+   - pin the newest stable pnpm release in `packageManager`
+   - upgrade direct dependencies and development dependencies to their newest
+     stable releases, including new majors, unless a verified incompatibility
+     blocks the upgrade
+   - use the newest stable major of each GitHub Action and eliminate action
+     runtime deprecation warnings
+
+   Apply available upgrades before the site change, regenerate the lockfile, and
+   run lint and tests. Put toolchain, dependency, lockfile, and workflow upgrades
+   in their own focused commit; do not mix them with content, design, or feature
+   work. If an upgrade is blocked, record the exact incompatibility in the
+   release report rather than silently leaving the stack stale. If nothing is
+   outdated, say so in the release report and do not create an empty commit.
+2. Confirm the intended scope with `git status --short` and inspect the complete
    diff. Preserve unrelated user changes. Run `git diff --check`.
-2. Run `pnpm lint` and `pnpm test`. The test command includes the production
+3. Run `pnpm lint` and `pnpm test`. The test command includes the production
    static export.
-3. Serve the baseline and candidate static exports on separate local ports.
+4. Serve the baseline and candidate static exports on separate local ports.
    Use the current `origin/main` merge base as the baseline, not memory or an
    older screenshot. Build the baseline in a detached temporary worktree so the
    active working tree is not rewritten or stashed:
@@ -31,7 +58,7 @@ correct.
 
    Run the two servers in separate terminals and leave them running through
    visual review.
-4. Capture full-page PNG screenshots of both versions with the same Chrome
+5. Capture full-page PNG screenshots of both versions with the same Chrome
    engine, device scale, font state, animation state, and viewport:
 
    ```sh
@@ -49,7 +76,7 @@ correct.
    It also writes `captures.json`; any `horizontalOverflow: true` result fails
    the release. Temporary captures live under `work/release-visuals/`, which is
    ignored by Git.
-5. Generate a transparent delta mask for each viewport:
+6. Generate a transparent delta mask for each viewport:
 
    ```sh
    for viewport in desktop mobile narrow; do
@@ -63,7 +90,7 @@ correct.
    The command reports changed-pixel count and percentage. A low percentage is
    not automatically safe, and a high percentage is not automatically a
    regression.
-6. Inspect the baseline, candidate, and mask as images. AI review must explicitly
+7. Inspect the baseline, candidate, and mask as images. AI review must explicitly
    describe and classify every changed region as intended, incidental but safe,
    or a regression. Inspect at least:
    - grid and baseline alignment
@@ -72,20 +99,20 @@ correct.
    - color, borders, contrast, and focus visibility
    - content accidentally added, removed, duplicated, or obscured
    Never approve screenshots from DOM or CSS inspection alone.
-7. Treat mobile as a first-class layout, not a shrunk desktop page. At 390 px,
+8. Treat mobile as a first-class layout, not a shrunk desktop page. At 390 px,
    verify reading order, comfortable page edges, intentional title wrapping,
    touch-safe controls, and no off-canvas content. Also inspect at 320 px when a
    change affects width, typography, or the grid.
-8. Treat screen readers as first-class consumers. Verify one `<main>` landmark,
+9. Treat screen readers as first-class consumers. Verify one `<main>` landmark,
    a logical heading outline, useful link names, sensible accessible names and
    reading order, decorative content hidden from assistive technology, and no
    duplicated announcements. Keyboard-test every control, including the skip
    link and visible focus state. Confirm reduced-motion behavior and check text
    contrast. Test at 200% browser zoom when layout or type changes.
-9. If any delta is unexplained or any accessibility check fails, fix it and
+10. If any delta is unexplained or any accessibility check fails, fix it and
    repeat capture, mask generation, and review. Keep the final evidence in
    `work/release-visuals/` for the duration of the release.
-10. Commit as `Jon Olson <jon@jon.dev>`, push normally, and watch the GitHub Pages
+11. Commit as `Jon Olson <jon@jon.dev>`, push normally, and watch the GitHub Pages
     workflow to a successful conclusion. Then make a verified HTTPS request to
     `https://jon.dev`, capture the live desktop and mobile views, and compare
     them with the approved candidate. Report the deployed commit and any
