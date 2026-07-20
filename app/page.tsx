@@ -16,7 +16,7 @@ const selectedProject = projects[0];
 
 export default function Home() {
   return (
-    <main className="shell" id="top">
+    <main className="shell">
       <SiteHeader />
 
       <section className="hero grid" aria-labelledby="home-title">
@@ -35,8 +35,6 @@ export default function Home() {
             Work in progress
           </p>
           <p className="hero-status meta">
-            Git-managed
-            <br />
             Seattle / 2026
           </p>
         </div>

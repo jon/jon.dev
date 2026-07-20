@@ -6,11 +6,6 @@ export function SiteFooter() {
       <span className="copyright meta">
         © {site.year} {site.name}
       </span>
-      <span className="footer-note meta">Built from text files</span>
-      <a className="top-link item-link" href="#top" aria-label="Back to top">
-        <span>Top</span>
-        <span aria-hidden="true">↑</span>
-      </a>
     </footer>
   );
 }
