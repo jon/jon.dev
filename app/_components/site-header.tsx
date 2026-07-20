@@ -1,20 +1,7 @@
-import Link from "next/link";
-
 export function SiteHeader() {
   return (
-    <header className="site-header grid" aria-label="Primary navigation">
-      <span className="header-index eyebrow">Personal index / 2026</span>
-      <nav className="nav">
-        <Link className="nav-link" href="/">
-          Index
-        </Link>
-        <Link className="nav-link" href="/writing">
-          Writing
-        </Link>
-        <Link className="nav-link" href="/projects">
-          Projects
-        </Link>
-      </nav>
+    <header className="site-header grid">
+      <span className="header-index eyebrow">Personal site / 2026</span>
     </header>
   );
 }

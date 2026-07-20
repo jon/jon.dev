@@ -1,11 +1,9 @@
 # jon.dev
 
-A small, Git-driven personal site for writing and projects.
+A small personal landing page.
 
-## Content
-
-Public content lives in [`content/site.ts`](content/site.ts). Add entries to
-the `writing` or `projects` arrays, then commit and push the change.
+Site metadata lives in [`content/site.ts`](content/site.ts). Writing and work
+sections can be added when there is material to publish.
 
 ## Local development
 

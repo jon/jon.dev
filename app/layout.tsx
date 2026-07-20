@@ -21,20 +21,11 @@ export const metadata: Metadata = {
     title: site.domain,
     description: site.description,
     url: "/",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "jon.dev — Writing, projects, and work in progress",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: site.domain,
     description: site.description,
-    images: ["/og.png"],
   },
 };
 
