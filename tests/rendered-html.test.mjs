@@ -11,13 +11,19 @@ async function renderedHtml(pathname = "index.html") {
 test("exports the jon.dev index as static HTML", async () => {
   const html = await renderedHtml();
   assert.match(html, /<title>jon\.dev<\/title>/i);
-  assert.match(html, /class="hero-title"/);
-  assert.match(html, /Personal site/);
+  assert.match(html, /class="identity-title"/);
   assert.match(
     html,
-    /Writing and work will appear here when there&#x27;s something to share\./,
+    /<address class="site-location meta">Seattle<\/address>/,
   );
-  assert.doesNotMatch(html, /Why this site exists|Selected project/);
+  assert.match(
+    html,
+    /class="copyright meta">©[\s\S]*?2026[\s\S]*?Jon Olson<\/span>/,
+  );
+  assert.doesNotMatch(
+    html,
+    /Personal site|Work in progress|About|Writing and work|Why this site exists|Selected project/i,
+  );
   assert.doesNotMatch(
     html,
     /codex-preview|react-loading-skeleton|Your site is taking shape/i,
@@ -29,17 +35,15 @@ test("keeps screen-reader landmarks and labels intentional", async () => {
   assert.equal(html.match(/<main(?:\s|>)/g)?.length, 1);
   assert.match(html, /<header[\s\S]*<main[\s\S]*<footer/);
   assert.match(html, /href="#main-content">Skip to content<\/a>/);
-  assert.match(html, /<main id="main-content" tabindex="-1">/);
-  assert.match(html, /<h1[^>]*aria-label="jon\.dev"/);
-  assert.match(html, /Section 1: Personal site/);
   assert.match(
     html,
-    /class="section-number eyebrow" aria-hidden="true">02<\/span>/,
+    /<main class="identity grid" id="main-content" tabindex="-1">/,
   );
   assert.match(
     html,
-    /class="about-mark meta" aria-hidden="true">jon\.dev<\/span>/,
+    /<h1 class="identity-title"><span>jon<\/span><span class="accent">\.<\/span><span>dev<\/span><\/h1>/,
   );
+  assert.doesNotMatch(html, /aria-hidden="true"/);
 });
 
 test("does not publish empty writing or project sections", async () => {
